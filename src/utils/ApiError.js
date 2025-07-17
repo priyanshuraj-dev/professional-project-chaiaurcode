@@ -1,9 +1,10 @@
+// The ApiResponse class creates a consistent response structure for every API call — error 
 class ApiError extends Error{
     constructor (
         statusCode,
         message = "Something went wrong",
         errors = [],
-        statck = ""
+        stack = ""
     ){
         super(message)
         this.statusCode = statusCode
@@ -12,10 +13,14 @@ class ApiError extends Error{
         this.success = false
         this.errors = errors
 
-        if(statck){
-            this.statck = statck
+        if(stack){
+            this.statck = stack
         }
         else{
+            //This method tells Node.js to:
+            // Record where the error occurred
+            // And save that info inside the error’s .stack property
+
             Error.captureStackTrace(this,this.constructor)
         }
     }
