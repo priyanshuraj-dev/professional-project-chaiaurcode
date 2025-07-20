@@ -3,6 +3,7 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser'
 const app = express()
 
+
 // this is to communicate with the backend
 app.use(cors({
     origin: process.env.CORS_ORIGIN,
@@ -19,11 +20,12 @@ app.use(express.static("public"))
 //Required for reading cookies (like tokens or session data) in secure user authentication systems
 app.use(cookieParser())
 
+
 // routes import
 import userRouter from './routes/user.routes.js'
-
 
 // routes declaration
 // route is used because router is written so middleware is used
 app.use('/api/v1/users',userRouter)
+
 export {app}
